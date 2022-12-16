@@ -1,5 +1,6 @@
 package dao;
 
+import dao.api.IMessageDAO;
 import dto.MessageDTO;
 
 import java.util.Collections;
