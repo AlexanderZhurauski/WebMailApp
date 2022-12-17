@@ -3,10 +3,7 @@ package dao;
 import dao.api.IMessageDAO;
 import dto.MessageDTO;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MessageMemoryDAO implements IMessageDAO {
@@ -28,11 +25,16 @@ public class MessageMemoryDAO implements IMessageDAO {
     }
 
     public List<MessageDTO> get(String recipient) {
-        return Collections.unmodifiableList(this.userMessages.get(recipient));
+        return this.userMessages.get(recipient);
     }
 
     public void add(MessageDTO message) {
-        this.userMessages.get(message.getRecipient())
-                .add(message);
+        List<MessageDTO> userInbox = this.userMessages.get(message.
+                getRecipient());
+        if (userInbox == null) {
+            userInbox = new ArrayList<>();
+            this.userMessages.put(message.getRecipient(), userInbox);
+        }
+        userInbox.add(message);
     }
 }
