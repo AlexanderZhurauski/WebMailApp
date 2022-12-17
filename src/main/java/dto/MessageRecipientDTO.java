@@ -6,7 +6,6 @@ public class MessageRecipientDTO {
 
     private final String text;
     private final String sender;
-
     private final LocalDateTime time;
 
     public MessageRecipientDTO(String text, String sender, LocalDateTime time) {
