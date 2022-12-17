@@ -1,12 +1,12 @@
 package dao.api;
 
-import dto.MessageDTO;
+import entities.MessageEntity;
 
 import java.util.List;
 
 public interface IMessageDAO {
 
-    List<MessageDTO> getAll();
-    List<MessageDTO> get(String recipient);
-    void add(MessageDTO message);
+    List<MessageEntity> getAll();
+    List<MessageEntity> get(String recipient);
+    void add(MessageEntity message);
  }

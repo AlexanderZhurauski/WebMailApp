@@ -1,16 +1,20 @@
-package dto;
+package entities;
 
-public class MessageDTO {
+import java.time.LocalDateTime;
+
+public class MessageEntity {
 
     private final String text;
     private final String sender;
     private final String recipient;
+    private final LocalDateTime sendTime;
 
-    public MessageDTO(String text, String sender,
-                         String recipient) {
+    public MessageEntity(String text, String sender,
+                      String recipient, LocalDateTime sendTime) {
         this.text = text;
         this.sender = sender;
         this.recipient = recipient;
+        this.sendTime = sendTime;
     }
 
     public String getText() {
@@ -23,5 +27,9 @@ public class MessageDTO {
 
     public String getRecipient() {
         return recipient;
+    }
+
+    public LocalDateTime getSendTime() {
+        return sendTime;
     }
 }
