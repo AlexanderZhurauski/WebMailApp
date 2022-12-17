@@ -1,25 +1,21 @@
+<%@ page import="dto.MessageRecipientDTO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="services.MessageService" %>
+<%@ page import="dao.MessageMemoryDAO" %>
+<%@ page import="services.api.IMessageService" %>
 <%@ page import="dto.UserSessionDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<% IMessageService service = new MessageService(new MessageMemoryDAO());
+    List<MessageRecipientDTO> messageList = service.get(getLogin(session));%>
+
 <html>
 <head>
-    <title>Message Form</title>
-    <style>
-        form {
-            text-align: center;
-        }
-    </style>
+    <title>ReceivedMessages</title>
 </head>
 <body>
-<form action="/api/message" method="post">
-    <h2>User <%= getLogin(session)%>'s Mailbox: Send a Message</h2>
-    <label for="recipient">Message recipient:</label><br>
-    <input type="text" id="recipient" name="recipient"><br>
-    <br>
-    <label for="message">Message Text:</label><br>
-    <textarea id="message" name="message" rows="10" cols="50"></textarea><br>
-    <br>
-    <input type="submit" value="Send">
-</form>
+    <!-- TODO -->
 </body>
 </html>
 
