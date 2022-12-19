@@ -1,5 +1,7 @@
 package services.api;
 
+import dto.UserSessionDTO;
+
 public interface IAdminStatisticService {
     String getStatistic();
 
@@ -8,4 +10,6 @@ public interface IAdminStatisticService {
     String getOnlineUsers();
 
     String getUserStatistic();
+
+    boolean verifyRole(UserSessionDTO user);
 }

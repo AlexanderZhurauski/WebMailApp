@@ -29,8 +29,8 @@ public class AdminStatisticServlet extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         HttpSession session = req.getSession();
-        var user = (UserSessionDTO) session.getAttribute("user");
-        if(!user.getRole().equals(UserRole.ADMIN)){
+        UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
+        if(!adminStatisticService.verifyRole(user)){
             resp.sendError(HttpServletResponse.SC_NOT_FOUND,"you are not ADMIN");
         }
         int messageStat = adminStatisticService.getMessageStatistic();

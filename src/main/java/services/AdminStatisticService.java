@@ -2,6 +2,8 @@ package services;
 
 import dao.api.IMessageDAO;
 import dao.api.IUserDAO;
+import dto.UserRole;
+import dto.UserSessionDTO;
 import listeners.ListenerOnlineUsers;
 import services.api.IAdminStatisticService;
 
@@ -45,6 +47,11 @@ public class AdminStatisticService implements IAdminStatisticService {
         StringBuilder sb = new StringBuilder();
         userDAO.getAll().forEach(user -> sb.append(user.getLogin()).append("\n"));
         return sb.toString();
+    }
+
+    @Override
+    public boolean verifyRole(UserSessionDTO user) {
+        return user.getRole().equals(UserRole.ADMIN);
     }
 }
 
