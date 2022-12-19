@@ -30,6 +30,9 @@ public class AdminStatisticServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         HttpSession session = req.getSession();
         UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
+        if(user==null){
+            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED,"you are not logged in");
+        }
         if(!adminStatisticService.verifyRole(user)){
             resp.sendError(HttpServletResponse.SC_NOT_FOUND,"you are not ADMIN");
         }
