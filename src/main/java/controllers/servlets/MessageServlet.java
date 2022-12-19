@@ -4,6 +4,7 @@ import dao.MessageMemoryDAO;
 import dto.MessageDTO;
 import dto.UserSessionDTO;
 import services.MessageService;
+import services.ServiceProvider;
 import services.api.IMessageService;
 
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,7 @@ public class MessageServlet extends HttpServlet {
 
     private static final DateTimeFormatter formatter =
             DateTimeFormatter.ofPattern("HH:mm:ss, dd.MM.yyyy");
+    private static final ServiceProvider provider = ServiceProvider.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -28,7 +30,7 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        IMessageService service = new MessageService(new MessageMemoryDAO());
+        IMessageService service = provider.getMessageService();
 
         HttpSession currentSession = req.getSession();
         UserSessionDTO user = getUserData(currentSession);
@@ -54,7 +56,7 @@ public class MessageServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
         HttpSession currentSession = req.getSession();
-        IMessageService service = new MessageService(new MessageMemoryDAO());
+        IMessageService service = provider.getMessageService();
 
         UserSessionDTO user = getUserData(currentSession);
         String text = getRequestParam(req, "text");
