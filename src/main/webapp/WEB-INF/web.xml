@@ -5,4 +5,23 @@
          version="3.1">
 
     <display-name>WebMailApp</display-name>
+
+    <servlet>
+        <servlet-name>MessageForm</servlet-name>
+        <jsp-file>/messageform.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MessageForm</servlet-name>
+        <url-pattern>/ui/user/message</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReceivedMessages</servlet-name>
+        <jsp-file>/chats.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReceivedMessages</servlet-name>
+        <url-pattern>/ui/user/chats</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -1,21 +1,21 @@
 package dao;
 
 import dao.api.IMessageDAO;
-import dto.MessageDTO;
+import entities.MessageEntity;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class MessageMemoryDAO implements IMessageDAO {
 
-    private final Map<String, List<MessageDTO>> userMessages;
+    private final Map<String, List<MessageEntity>> userMessages;
 
     public MessageMemoryDAO() {
         this.userMessages = new HashMap<>();
     }
 
-    public List<MessageDTO> getAll() {
-        List<MessageDTO> allMessages = this.userMessages
+    public List<MessageEntity> getAll() {
+        List<MessageEntity> allMessages = this.userMessages
                 .values()
                 .stream()
                 .flatMap(List::stream)
@@ -24,12 +24,12 @@ public class MessageMemoryDAO implements IMessageDAO {
         return allMessages;
     }
 
-    public List<MessageDTO> get(String recipient) {
+    public List<MessageEntity> get(String recipient) {
         return this.userMessages.get(recipient);
     }
 
-    public void add(MessageDTO message) {
-        List<MessageDTO> userInbox = this.userMessages.get(message.
+    public void add(MessageEntity message) {
+        List<MessageEntity> userInbox = this.userMessages.get(message.
                 getRecipient());
         if (userInbox == null) {
             userInbox = new ArrayList<>();

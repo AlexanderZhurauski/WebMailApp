@@ -1,16 +1,17 @@
 package dto;
 
-public class MessageDTO {
+import java.time.LocalDateTime;
+
+public class MessageRecipientDTO {
 
     private final String text;
     private final String sender;
-    private final String recipient;
+    private final LocalDateTime time;
 
-    public MessageDTO(String text, String sender,
-                         String recipient) {
+    public MessageRecipientDTO(String text, String sender, LocalDateTime time) {
         this.text = text;
         this.sender = sender;
-        this.recipient = recipient;
+        this.time = time;
     }
 
     public String getText() {
@@ -21,7 +22,7 @@ public class MessageDTO {
         return sender;
     }
 
-    public String getRecipient() {
-        return recipient;
+    public LocalDateTime getTime() {
+        return time;
     }
 }
