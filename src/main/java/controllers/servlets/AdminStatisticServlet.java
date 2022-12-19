@@ -37,14 +37,14 @@ public class AdminStatisticServlet extends HttpServlet {
         String onlineUsers = adminStatisticService.getOnlineUsers();
         String usersStat = adminStatisticService.getUserStatistic();
         writer.write("<h3>The number of messages sent in the application: "
-                + messageStat + "</h3>");
-        writer.write("<h3> Online users </h3>");
+                + messageStat + "<br></h3>");
+        writer.write("<h3> Online users <br></h3>");
         for (var s : onlineUsers.split("\n")) {
-            writer.write("<h4>  " + s + "</h4>");
+            writer.write("<h4>  " + s + "<br></h4>");
         }
-        writer.write("<h3> Registered users in the application </h3>");
+        writer.write("<h3> Registered users in the application <br></h3>");
         for (var s : usersStat.split("\n")) {
-            writer.write("<h4>  " + s + "</h4>");
+            writer.write("<h4>  " + s + "<br></h4>");
         }
     }
 }
