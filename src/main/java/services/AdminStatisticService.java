@@ -17,19 +17,6 @@ public class AdminStatisticService implements IAdminStatisticService {
     }
 
     @Override
-    public String getStatistic() {
-        StringBuilder sb=new StringBuilder();
-        sb.append("The number of messages sent in the application: ")
-                .append(getMessageStatistic()).append("\t")
-                .append("Online users: ").append("\t")
-                .append(getOnlineUsers()).append("\t")
-                .append("Registered users in the application")
-                .append("\t")
-                .append(getUserStatistic());
-        return sb.toString();
-    }
-
-    @Override
     public int getMessageStatistic() {
         return messageDAO.getAll().size();
     }
