@@ -1,17 +1,41 @@
 package services;
 
+import dao.DAOProvider;
 import dto.UserRegistrationDTO;
+import dto.UserRole;
+import entities.UserEntity;
 import services.api.IRegistrationService;
+import services.api.util.IHashGenerator;
 
 import java.time.LocalDate;
 import java.time.Period;
 
 public class RegistrationService implements IRegistrationService {
 
+    private final DAOProvider daoProvider;
+    private final IHashGenerator hashGenerator;
+
+    public RegistrationService(DAOProvider daoProvider, IHashGenerator hashGenerator) {
+        this.daoProvider = daoProvider;
+        this.hashGenerator = hashGenerator;
+    }
+
     @Override
     public boolean signUp(UserRegistrationDTO user) {
         validateUser(user);
-        return true;
+        user.setPassword(hashGenerator.createHash(user.getPassword()));
+        UserEntity newUser = createUserEntity(user);
+        return daoProvider.getUserDAO().add(newUser);
+    }
+
+    private UserEntity createUserEntity(UserRegistrationDTO user) {
+        return new UserEntity(user.getLogin(),
+                user.getPassword(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getPatronymic(),
+                user.getBirthday(),
+                UserRole.USER);
     }
 
     private void validateUser(UserRegistrationDTO user) {

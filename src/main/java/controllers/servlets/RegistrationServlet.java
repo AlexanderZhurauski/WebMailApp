@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -34,8 +35,15 @@ public class RegistrationServlet extends HttpServlet {
             throws IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
+        PrintWriter writer = resp.getWriter();
 
         UserRegistrationDTO user = createUser(req);
+        boolean registrationSuccess = provider.getRegistrationService().signUp(user);
+        if (registrationSuccess) {
+            writer.append("<h2>registration completed successfully</h2>");
+        } else {
+            writer.append("<h2>registration failed, login already taken</h2>");
+        }
     }
 
     private UserRegistrationDTO createUser(HttpServletRequest req) {

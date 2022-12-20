@@ -1,12 +1,15 @@
 package services.util;
 
+import services.api.util.IHashGenerator;
+
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class HashSHA3Generator {
+public class HashSHA3Generator implements IHashGenerator {
 
+    @Override
     public String createHash(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA3-512");
