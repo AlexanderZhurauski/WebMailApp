@@ -74,7 +74,7 @@
                 <directory>${basedir}/src/main/webapp/</directory>
               </resource>
             </webResources>
-            <warName>voting</warName>
+            <warName>mail</warName>
             <webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
           </configuration>
         </plugin>
