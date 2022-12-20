@@ -38,12 +38,8 @@ public class RegistrationServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
 
         UserRegistrationDTO user = createUser(req);
-        boolean registrationSuccess = provider.getRegistrationService().signUp(user);
-        if (registrationSuccess) {
-            writer.append("<h2>registration completed successfully</h2>");
-        } else {
-            writer.append("<h2>registration failed, login already taken</h2>");
-        }
+        provider.getRegistrationService().signUp(user);
+        writer.append("<h2>registration completed successfully</h2>");
     }
 
     private UserRegistrationDTO createUser(HttpServletRequest req) {

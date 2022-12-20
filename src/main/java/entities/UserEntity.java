@@ -74,16 +74,24 @@ public class UserEntity {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        UserEntity user = (UserEntity) obj;
-        return login.equals(user.login);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return Objects.equals(login, that.login)
+                && Objects.equals(password, that.password)
+                && Objects.equals(firstName, that.firstName)
+                && Objects.equals(lastName, that.lastName)
+                && Objects.equals(patronymic, that.patronymic)
+                && Objects.equals(birthDate, that.birthDate)
+                && Objects.equals(registrationDate, that.registrationDate)
+                && role == that.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login);
+        return Objects.hash(login, password, firstName, lastName, patronymic,
+                birthDate, registrationDate, role);
     }
 
     @Override

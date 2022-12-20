@@ -13,7 +13,7 @@ public interface IUserDAO {
 
     UserLoginDTO getUserLoginDTO(String login);
 
-    boolean add(UserEntity userEntity);
+    void add(UserEntity userEntity);
 
     boolean exist(String login);
 }

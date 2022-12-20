@@ -4,5 +4,5 @@ import dto.UserRegistrationDTO;
 
 public interface IRegistrationService {
 
-    boolean signUp(UserRegistrationDTO user);
+    void signUp(UserRegistrationDTO user);
 }

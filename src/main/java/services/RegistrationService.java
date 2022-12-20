@@ -21,11 +21,16 @@ public class RegistrationService implements IRegistrationService {
     }
 
     @Override
-    public boolean signUp(UserRegistrationDTO user) {
+    public void signUp(UserRegistrationDTO user) {
         validateUser(user);
         user.setPassword(hashGenerator.createHash(user.getPassword()));
         UserEntity newUser = createUserEntity(user);
-        return daoProvider.getUserDAO().add(newUser);
+        if (daoProvider.getUserDAO().exist(newUser.getLogin())) {
+            daoProvider.getUserDAO().add(newUser);
+        } else {
+            throw new IllegalArgumentException("registration failed," +
+                    " login already taken");
+        }
     }
 
     private UserEntity createUserEntity(UserRegistrationDTO user) {

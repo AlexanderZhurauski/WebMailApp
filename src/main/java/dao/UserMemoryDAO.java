@@ -47,14 +47,8 @@ public class UserMemoryDAO implements IUserDAO {
     }
 
     @Override
-    public boolean add(UserEntity userEntity) {
-        String login = userEntity.getLogin();
-        if (users.containsKey(login)) {
-            return false;
-        } else {
-            users.put(login, userEntity);
-            return true;
-        }
+    public void add(UserEntity userEntity) {
+        users.put(userEntity.getLogin(), userEntity);
     }
 
     @Override

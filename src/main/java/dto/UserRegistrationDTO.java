@@ -52,16 +52,21 @@ public class UserRegistrationDTO {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        UserRegistrationDTO user = (UserRegistrationDTO) obj;
-        return login.equals(user.login);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserRegistrationDTO that = (UserRegistrationDTO) o;
+        return Objects.equals(login, that.login)
+                && Objects.equals(password, that.password)
+                && Objects.equals(firstName, that.firstName)
+                && Objects.equals(lastName, that.lastName)
+                && Objects.equals(patronymic, that.patronymic)
+                && Objects.equals(birthday, that.birthday);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login);
+        return Objects.hash(login, password, firstName, lastName, patronymic, birthday);
     }
 
     @Override
