@@ -61,7 +61,7 @@ public class RegistrationServlet extends HttpServlet {
         if (parameterValues.length > 1) {
             throw new IllegalArgumentException("there must be only one " + paramName);
         }
-        return parameterValues[0];
+        return parameterValues[0].trim();
     }
 
     private LocalDate getBirthday(String[] birthdays) {
