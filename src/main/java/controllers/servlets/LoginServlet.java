@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
         loginService.singIn(new UserLoginDTO(login, password));
 
         HttpSession session = req.getSession();
-        session.setAttribute(login, loginService.getUserSessionDTO(login));
+        session.setAttribute("user", loginService.getUserSessionDTO(login));
         writer.append("<h2>login completed successfully</h2>");
     }
 
