@@ -4,22 +4,23 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class UserRegistrationDTO {
-    private String login;
+
+    private final String login;
     private String password;
     private String firstName;
     private String lastName;
     private String patronymic;
-    private LocalDate birthDate;
+    private LocalDate birthday;
 
     public UserRegistrationDTO(String login, String password,
                                String firstName, String lastName,
-                               String patronymic, LocalDate birthDate) {
+                               String patronymic, LocalDate birthday) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.patronymic = patronymic;
-        this.birthDate = birthDate;
+        this.birthday = birthday;
     }
 
     public String getLogin() {
@@ -42,8 +43,12 @@ public class UserRegistrationDTO {
         return patronymic;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -51,29 +56,27 @@ public class UserRegistrationDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserRegistrationDTO that = (UserRegistrationDTO) o;
-        return Objects.equals(login, that.login) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName) &&
-                Objects.equals(patronymic, that.patronymic) &&
-                Objects.equals(birthDate, that.birthDate);
+        return Objects.equals(login, that.login)
+                && Objects.equals(password, that.password)
+                && Objects.equals(firstName, that.firstName)
+                && Objects.equals(lastName, that.lastName)
+                && Objects.equals(patronymic, that.patronymic)
+                && Objects.equals(birthday, that.birthday);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login, password, firstName,
-                lastName, patronymic, birthDate);
+        return Objects.hash(login, password, firstName, lastName, patronymic, birthday);
     }
 
     @Override
     public String toString() {
         return "UserRegistrationDTO{" +
                 "login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthday=" + birthday +
                 '}';
     }
 }

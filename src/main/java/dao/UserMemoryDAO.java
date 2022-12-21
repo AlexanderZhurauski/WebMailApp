@@ -7,15 +7,18 @@ import dto.UserSessionDTO;
 import entities.UserEntity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class UserMemoryDAO implements IUserDAO {
     private final Map<String, UserEntity> users = new HashMap<>();
 
     public UserMemoryDAO() {
         add(new UserEntity("admin", "admin", "admin", "admin",
-                "admin", LocalDate.now(), LocalDateTime.now(), UserRole.ADMIN));
+                "admin", LocalDate.now(), LocalDate.now(), UserRole.ADMIN));
     }
 
     @Override
