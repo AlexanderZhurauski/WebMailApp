@@ -1,9 +1,7 @@
-package controllers.servlets;
+package asd;
 
 import dto.UserRole;
 import dto.UserSessionDTO;
-import services.ServiceProvider;
-import services.api.IAdminStatisticService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,12 +27,9 @@ public class AdminStatisticServlet extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         HttpSession session = req.getSession();
-        UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
-        if(user==null){
-            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED,"you are not logged in");
-        }
-        if(!adminStatisticService.verifyRole(user)){
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND,"you are not ADMIN");
+        var user = (UserSessionDTO) session.getAttribute("user");
+        if(!user.getRole().equals(UserRole.ADMIN)){
+            resp.sendError(HttpServletResponse.SC_NOT_FOUND,"u are not ADMIN");
         }
         int messageStat = adminStatisticService.getMessageStatistic();
         String onlineUsers = adminStatisticService.getOnlineUsers();
@@ -42,13 +37,11 @@ public class AdminStatisticServlet extends HttpServlet {
         writer.write("<h3>The number of messages sent in the application: "
                 + messageStat + "</h3>");
         writer.write("<h3> Online users </h3>");
-        printStat(onlineUsers,writer);
+        for (var s : onlineUsers.split("\n")) {
+            writer.write("<h4>  " + s + "</h4>");
+        }
         writer.write("<h3> Registered users in the application </h3>");
-        printStat(usersStat,writer);
-    }
-
-    private void printStat(String stat,PrintWriter writer){
-        for (var s : stat.split("\n")) {
+        for (var s : usersStat.split("\n")) {
             writer.write("<h4>  " + s + "</h4>");
         }
     }
