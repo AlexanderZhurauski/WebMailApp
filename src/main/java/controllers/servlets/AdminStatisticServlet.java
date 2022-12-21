@@ -1,7 +1,5 @@
 package controllers.servlets;
 
-import dto.UserRole;
-import dto.UserSessionDTO;
 import services.ServiceProvider;
 import services.api.IAdminStatisticService;
 
@@ -10,11 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "AdminStatisticServlet", urlPatterns = "api/admin/statistic")
+@WebServlet(name = "AdminStatisticServlet", urlPatterns = "/api/admin/statistic")
 public class AdminStatisticServlet extends HttpServlet {
     private final IAdminStatisticService adminStatisticService;
 
@@ -28,14 +25,6 @@ public class AdminStatisticServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        HttpSession session = req.getSession();
-        UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
-        if(user==null){
-            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED,"you are not logged in");
-        }
-        if(!adminStatisticService.verifyRole(user)){
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND,"you are not ADMIN");
-        }
         int messageStat = adminStatisticService.getMessageStatistic();
         String onlineUsers = adminStatisticService.getOnlineUsers();
         String usersStat = adminStatisticService.getUserStatistic();
