@@ -25,7 +25,7 @@ public class RegistrationService implements IRegistrationService {
         validateUser(user);
         user.setPassword(hashGenerator.createHash(user.getPassword()));
         UserEntity newUser = createUserEntity(user);
-        if (daoProvider.getUserDAO().exist(newUser.getLogin())) {
+        if (!daoProvider.getUserDAO().exist(newUser.getLogin())) {
             daoProvider.getUserDAO().add(newUser);
         } else {
             throw new IllegalArgumentException("registration failed," +

@@ -23,8 +23,4 @@
         <servlet-name>ReceivedMessages</servlet-name>
         <url-pattern>/ui/user/chats</url-pattern>
     </servlet-mapping>
-
-    <listener>
-        <listener-class>${basedir}/src/main/listeners.ListenerOnlineUsers</listener-class>
-    </listener>
 </web-app>
