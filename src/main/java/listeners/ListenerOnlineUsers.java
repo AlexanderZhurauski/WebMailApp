@@ -1,44 +1,35 @@
 package listeners;
 
+import dao.DAOProvider;
+import dao.api.IOnlineUserDAO;
 import dto.UserSessionDTO;
 
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSessionAttributeListener;
+import javax.servlet.http.HttpSessionBindingEvent;
 
-public class ListenerOnlineUsers implements HttpSessionListener {
-    private volatile static ListenerOnlineUsers instance;
-    private final List<UserSessionDTO> onlineUsers;
+@WebListener
+public class ListenerOnlineUsers implements HttpSessionAttributeListener{
+    private final IOnlineUserDAO users = DAOProvider.getInstance().getUserOnlineDAO();
 
-    private ListenerOnlineUsers(){
-        onlineUsers=new ArrayList<>();
-    }
-
-    public static ListenerOnlineUsers getInstance() {
-        if(instance==null){
-            synchronized (ListenerOnlineUsers.class){
-                if(instance==null){
-                    instance=new ListenerOnlineUsers();
-                }
-            }
+    @Override
+    public void attributeAdded(HttpSessionBindingEvent se) {
+        UserSessionDTO user = (UserSessionDTO) se.getSession().getAttribute("user");
+        if (user != null) {
+            users.save(user);
         }
-        return instance;
     }
 
     @Override
-    public void sessionCreated(HttpSessionEvent se) {
-        onlineUsers.add((UserSessionDTO) se.getSession().getAttribute("user"));
+    public void attributeRemoved(HttpSessionBindingEvent se) {
+        UserSessionDTO user = (UserSessionDTO) se.getSession().getAttribute("user");
+        if (user != null) {
+            users.remove(user);
+        }
     }
 
     @Override
-    public void sessionDestroyed(HttpSessionEvent se) {
-        onlineUsers.remove((UserSessionDTO)se.getSession().getAttribute("user"));
-    }
-
-    public List<UserSessionDTO> getOnlineUsers() {
-        return Collections.unmodifiableList(onlineUsers);
+    public void attributeReplaced(HttpSessionBindingEvent event) {
     }
 
 }
