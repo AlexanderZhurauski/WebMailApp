@@ -65,10 +65,6 @@ public class RegistrationServlet extends HttpServlet {
         if (parameterValues.length > 1) {
             throw new IllegalArgumentException("there must be only one " + paramName);
         }
-        if (parameterValues[0] == null || parameterValues[0].isBlank()) {
-            throw new IllegalArgumentException("Invalid " + paramName +
-                    " provided");
-        }
         return parameterValues[0].trim();
     }
 
@@ -78,9 +74,6 @@ public class RegistrationServlet extends HttpServlet {
         }
         if (birthdays.length > 1) {
             throw new IllegalArgumentException("there must be only one birthday");
-        }
-        if (birthdays[0] == null || birthdays[0].isBlank()) {
-            throw new IllegalArgumentException("Invalid birthday provided");
         }
         try {
             return LocalDate.parse(birthdays[0], formatter);
