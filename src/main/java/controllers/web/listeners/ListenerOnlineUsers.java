@@ -1,4 +1,4 @@
-package listeners;
+package controllers.web.listeners;
 
 import dao.DAOProvider;
 import dao.api.IOnlineUserDAO;

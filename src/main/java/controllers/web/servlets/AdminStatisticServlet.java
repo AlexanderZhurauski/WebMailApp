@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.web.servlets;
 
 import services.ServiceProvider;
 import services.api.IAdminStatisticService;
