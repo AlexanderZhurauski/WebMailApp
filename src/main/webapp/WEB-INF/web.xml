@@ -8,7 +8,7 @@
 
     <servlet>
         <servlet-name>MessageForm</servlet-name>
-        <jsp-file>/messageform.jsp</jsp-file>
+        <jsp-file>/views/messageform.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>MessageForm</servlet-name>
@@ -17,7 +17,7 @@
 
     <servlet>
         <servlet-name>ReceivedMessages</servlet-name>
-        <jsp-file>/chats.jsp</jsp-file>
+        <jsp-file>/views/chats.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>ReceivedMessages</servlet-name>
