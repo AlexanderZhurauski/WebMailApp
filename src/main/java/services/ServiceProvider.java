@@ -2,6 +2,7 @@ package services;
 
 import dao.DAOProvider;
 import services.api.IAdminStatisticService;
+import services.api.ILoginService;
 import services.api.IMessageService;
 import services.api.IRegistrationService;
 import services.util.HashSHA3Generator;
@@ -10,6 +11,7 @@ public class ServiceProvider {
     private final IAdminStatisticService adminStatisticService;
     private final IMessageService messageService;
     private final IRegistrationService registrationService;
+    private final ILoginService loginService;
     private static volatile ServiceProvider instance;
 
     private ServiceProvider() {
@@ -20,6 +22,9 @@ public class ServiceProvider {
                 DAOProvider.getInstance().getMessageDAO());
         registrationService = new RegistrationService(
                 DAOProvider.getInstance(),
+                new HashSHA3Generator());
+        loginService = new LoginService(
+                DAOProvider.getInstance().getUserDAO(),
                 new HashSHA3Generator());
     }
 
@@ -38,7 +43,7 @@ public class ServiceProvider {
         return messageService;
     }
 
-    public IAdminStatisticService getAdminStatisticService(){
+    public IAdminStatisticService getAdminStatisticService() {
         return adminStatisticService;
     }
 
@@ -46,4 +51,7 @@ public class ServiceProvider {
         return registrationService;
     }
 
+    public ILoginService getLoginService() {
+        return loginService;
+    }
 }
