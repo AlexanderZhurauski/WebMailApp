@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "api/login")
+@WebServlet(name = "LoginServlet", urlPatterns = "/api/login")
 public class LoginServlet extends HttpServlet {
     private final ILoginService loginService;
     private final String LOGIN_PARAM_NAME = "login";

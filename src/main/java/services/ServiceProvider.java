@@ -19,7 +19,8 @@ public class ServiceProvider {
                 .getMessageDAO());
         adminStatisticService = new AdminStatisticService(
                 DAOProvider.getInstance().getUserDAO(),
-                DAOProvider.getInstance().getMessageDAO());
+                DAOProvider.getInstance().getMessageDAO(),
+                DAOProvider.getInstance().getUserOnlineDAO());
         registrationService = new RegistrationService(
                 DAOProvider.getInstance(),
                 new HashSHA3Generator());
