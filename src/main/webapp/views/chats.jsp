@@ -2,9 +2,8 @@
 
 <%@ page import="dto.MessageRecipientDTO" %>
 <%@ page import="java.util.List" %>
-<%@ page import="services.MessageService" %>
-<%@ page import="dao.MessageMemoryDAO" %>
 <%@ page import="services.api.IMessageService" %>
+<%@ page import="services.ServiceProvider" %>
 
 <%@ include file="getlogin.jsp"%>
 
@@ -13,7 +12,9 @@
          pageEncoding="UTF-8"%>
 
 <%! List<MessageRecipientDTO> messageList; %>
-<% IMessageService service = new MessageService(new MessageMemoryDAO());
+<% IMessageService service = ServiceProvider
+        .getInstance()
+        .getMessageService();
     messageList = service.get(getLogin(session));
     session.setAttribute("messageList", messageList);
     %>
