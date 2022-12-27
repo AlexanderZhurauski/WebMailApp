@@ -7,7 +7,6 @@ import entities.MessageEntity;
 import services.api.IMessageService;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,12 +30,7 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<MessageRecipientDTO> get(String recipient) {
-
-        List<MessageEntity> messageEntities = dao.get(recipient);
-        if (messageEntities == null) {
-            messageEntities = new ArrayList<>();
-        }
-        List<MessageRecipientDTO> userMessages = messageEntities
+        List<MessageRecipientDTO> userMessages = dao.get(recipient)
                 .stream()
                 .map(x -> new MessageRecipientDTO(x.getText(), x.getSender(),
                         x.getSendTime()))

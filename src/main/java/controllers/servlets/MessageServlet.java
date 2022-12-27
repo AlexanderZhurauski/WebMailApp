@@ -1,7 +1,9 @@
 package controllers.servlets;
 
+import dao.MessageMemoryDAO;
 import dto.MessageDTO;
 import dto.UserSessionDTO;
+import services.MessageService;
 import services.ServiceProvider;
 import services.api.IMessageService;
 
@@ -19,9 +21,7 @@ public class MessageServlet extends HttpServlet {
 
     private static final DateTimeFormatter formatter =
             DateTimeFormatter.ofPattern("HH:mm:ss, dd.MM.yyyy");
-
-    private final String MESSAGE_PARAM_NAME = "text";
-    private final String RECIPIENT_PARAM_NAME = "password";
+    private static final ServiceProvider provider = ServiceProvider.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -30,8 +30,7 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        IMessageService service = ServiceProvider.getInstance()
-                .getMessageService();
+        IMessageService service = provider.getMessageService();
 
         HttpSession currentSession = req.getSession();
         UserSessionDTO user = getUserData(currentSession);
@@ -56,18 +55,14 @@ public class MessageServlet extends HttpServlet {
             throws IOException {
 
         req.setCharacterEncoding("UTF-8");
-        PrintWriter writer = resp.getWriter();
         HttpSession currentSession = req.getSession();
-        IMessageService service = ServiceProvider.getInstance()
-                .getMessageService();
+        IMessageService service = provider.getMessageService();
 
         UserSessionDTO user = getUserData(currentSession);
-        String message = getRequestParam(req, MESSAGE_PARAM_NAME);
+        String text = getRequestParam(req, "text");
         String sender = getUserLogin(user);
-        String recipient = getRequestParam(req, RECIPIENT_PARAM_NAME);
-        service.send(new MessageDTO(message, sender, recipient));
-
-        writer.append("<h2>Message to " + recipient + " sent successfully!</h2>");
+        String recipient = getRequestParam(req, "recipient");
+        service.send(new MessageDTO(text, sender, recipient));
     }
 
     private UserSessionDTO getUserData(HttpSession session) {
