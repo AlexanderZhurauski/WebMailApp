@@ -1,9 +1,7 @@
 package controllers.servlets;
 
-import dao.MessageMemoryDAO;
 import dto.MessageDTO;
 import dto.UserSessionDTO;
-import services.MessageService;
 import services.ServiceProvider;
 import services.api.IMessageService;
 
@@ -41,7 +39,6 @@ public class MessageServlet extends HttpServlet {
                 .append("'s current messages: </h1> <br>");
 
         service.get(login)
-                .stream()
                 .forEach(message -> writer.append(message.getSender())
                         .append(", ")
                         .append(message.getTime().format(formatter))
