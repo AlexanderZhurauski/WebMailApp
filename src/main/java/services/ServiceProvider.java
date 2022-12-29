@@ -16,7 +16,7 @@ public class ServiceProvider {
 
     private ServiceProvider() {
         messageService = new MessageService(DAOProvider.getInstance()
-                .getMessageDAO());
+                .getMessageDAO(), DAOProvider.getInstance().getUserDAO());
         adminStatisticService = new AdminStatisticService(
                 DAOProvider.getInstance().getUserDAO(),
                 DAOProvider.getInstance().getMessageDAO(),
