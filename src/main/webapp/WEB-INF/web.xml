@@ -23,4 +23,13 @@
         <servlet-name>ReceivedMessages</servlet-name>
         <url-pattern>/ui/user/chats</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignUp</servlet-name>
+        <jsp-file>/views/signUpForm.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignUp</servlet-name>
+        <url-pattern>/ui/signUp</url-pattern>
+    </servlet-mapping>
 </web-app>

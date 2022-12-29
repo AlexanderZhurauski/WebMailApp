@@ -17,7 +17,10 @@ public class UserMemoryDAO implements IUserDAO {
     private final Map<String, UserEntity> users = new HashMap<>();
 
     public UserMemoryDAO() {
-        add(new UserEntity("admin", "admin", "admin", "admin",
+        add(new UserEntity("admin",
+                "5a38afb1a18d408e6cd367f9db91e2ab9bce834cdad3da24183cc174956c20c" +
+                        "e35dd39c2bd36aae907111ae3d6ada353f7697a5f1a8fc567aae9e4ca41a9d19d",
+                "admin", "admin",
                 "admin", LocalDate.now(), LocalDate.now(), UserRole.ADMIN));
     }
 

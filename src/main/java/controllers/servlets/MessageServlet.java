@@ -1,12 +1,11 @@
 package controllers.servlets;
 
-import dao.MessageMemoryDAO;
 import dto.MessageDTO;
 import dto.UserSessionDTO;
-import services.MessageService;
 import services.ServiceProvider;
 import services.api.IMessageService;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ public class MessageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+            throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
@@ -41,7 +40,6 @@ public class MessageServlet extends HttpServlet {
                 .append("'s current messages: </h1> <br>");
 
         service.get(login)
-                .stream()
                 .forEach(message -> writer.append(message.getSender())
                         .append(", ")
                         .append(message.getTime().format(formatter))
@@ -52,7 +50,7 @@ public class MessageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+            throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
         HttpSession currentSession = req.getSession();

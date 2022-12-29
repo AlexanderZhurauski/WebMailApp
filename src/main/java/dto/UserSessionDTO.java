@@ -1,7 +1,5 @@
 package dto;
 
-import entities.UserEntity;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
