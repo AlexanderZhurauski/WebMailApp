@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.web.servlets;
 
 import dto.MessageDTO;
 import dto.UserSessionDTO;

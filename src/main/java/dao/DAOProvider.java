@@ -6,17 +6,17 @@ import dao.api.IUserDAO;
 
 public class DAOProvider {
 
-    private IMessageDAO messageDAO;
-    private IUserDAO userDAO;
-    private final IOnlineUserDAO onlineUserDAO;
-
+    private final IMessageDAO messageDAO;
+    private final IUserDAO userDAO;
+    private final IOnlineUserDAO userOnlineDAO;
     private static volatile DAOProvider instance;
 
     private DAOProvider() {
         messageDAO = new MessageMemoryDAO();
         userDAO = new UserMemoryDAO();
-        onlineUserDAO=new OnlineUserDAO();
+        userOnlineDAO = new OnlineUserDAO();
     }
+
     public static DAOProvider getInstance() {
         if (instance == null) {
             synchronized (DAOProvider.class) {
@@ -37,6 +37,6 @@ public class DAOProvider {
     }
 
     public IOnlineUserDAO getUserOnlineDAO() {
-        return onlineUserDAO;
+        return userOnlineDAO;
     }
 }

@@ -7,5 +7,4 @@ public interface IAdminStatisticService {
     String getOnlineUsers();
 
     String getUserStatistic();
-
 }
