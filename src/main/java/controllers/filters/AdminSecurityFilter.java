@@ -13,6 +13,7 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/ui/admin/*", "/api/admin/*"})
 public class AdminSecurityFilter implements Filter {
+    private final String USER_PARAM_NAME = "user";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -25,7 +26,7 @@ public class AdminSecurityFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         String contextPath = req.getContextPath();
         HttpSession session = req.getSession();
-        UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
+        UserSessionDTO user = (UserSessionDTO) session.getAttribute(USER_PARAM_NAME);
         if ((session != null) && (user != null) && (user.getRole() == UserRole.ADMIN)) {
             chain.doFilter(request, response);
         } else {
