@@ -18,6 +18,7 @@ public class LoginServlet extends HttpServlet {
     private final ILoginService loginService;
     private final String LOGIN_PARAM_NAME = "login";
     private final String PASSWORD_PARAM_NAME = "password";
+    private final String USER_PARAM_NAME = "user";
 
     public LoginServlet() {
         this.loginService = ServiceProvider.getInstance().getLoginService();
@@ -35,7 +36,7 @@ public class LoginServlet extends HttpServlet {
         loginService.singIn(new UserLoginDTO(login, password));
 
         HttpSession session = req.getSession();
-        session.setAttribute("user", loginService.getUserSessionDTO(login));
+        session.setAttribute(USER_PARAM_NAME, loginService.getUserSessionDTO(login));
         session.setMaxInactiveInterval(-1);
         writer.append("<h2>login completed successfully</h2>");
     }
