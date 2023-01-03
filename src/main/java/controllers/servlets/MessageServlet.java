@@ -20,8 +20,9 @@ public class MessageServlet extends HttpServlet {
 
     private static final DateTimeFormatter formatter =
             DateTimeFormatter.ofPattern("HH:mm:ss, dd.MM.yyyy");
-    private static final ServiceProvider provider = ServiceProvider.getInstance();
-
+    private final String MESSAGE_PARAM_NAME = "text";
+    private final String RECIPIENT_PARAM_NAME = "recipient";
+    private final String USER_ATTRIBUTE = "user";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -29,11 +30,12 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        IMessageService service = provider.getMessageService();
+        IMessageService service = ServiceProvider.getInstance()
+                .getMessageService();
 
         HttpSession currentSession = req.getSession();
-        UserSessionDTO user = getUserData(currentSession);
-        String login = getUserLogin(user);
+        UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute(USER_ATTRIBUTE);
+        String login = user.getLogin();
 
         writer.append("<h1>")
                 .append(user.getLogin())
@@ -53,32 +55,18 @@ public class MessageServlet extends HttpServlet {
             throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
+        PrintWriter writer = resp.getWriter();
         HttpSession currentSession = req.getSession();
-        IMessageService service = provider.getMessageService();
+        IMessageService service = ServiceProvider.getInstance()
+                .getMessageService();
 
-        UserSessionDTO user = getUserData(currentSession);
-        String text = getRequestParam(req, "text");
-        String sender = getUserLogin(user);
-        String recipient = getRequestParam(req, "recipient");
+        UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute(USER_ATTRIBUTE);
+        String text = getRequestParam(req, MESSAGE_PARAM_NAME);
+        String sender = user.getLogin();
+        String recipient = getRequestParam(req, RECIPIENT_PARAM_NAME);
         service.send(new MessageDTO(text, sender, recipient));
-    }
 
-    private UserSessionDTO getUserData(HttpSession session) {
-        UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
-        if (user == null) {
-            throw new IllegalStateException("No user is logged in");
-        }
-
-        return user;
-    }
-    private String getUserLogin(UserSessionDTO user) {
-        String login = user.getLogin();
-        if (login == null || login.isBlank()) {
-            throw new IllegalStateException("User login data in the" +
-                    " session is corrupted");
-        }
-
-        return login;
+        writer.append("Message to " + recipient + " sent successfully!");
     }
 
     private String getRequestParam(HttpServletRequest req, String name) {

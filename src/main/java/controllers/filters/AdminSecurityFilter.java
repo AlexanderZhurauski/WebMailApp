@@ -30,7 +30,7 @@ public class AdminSecurityFilter implements Filter {
         if ((session != null) && (user != null) && (user.getRole() == UserRole.ADMIN)) {
             chain.doFilter(request, response);
         } else {
-            resp.sendRedirect(contextPath+"/ui/singIn");
+            resp.sendRedirect(contextPath+"/ui/signIn");
         }
     }
 
