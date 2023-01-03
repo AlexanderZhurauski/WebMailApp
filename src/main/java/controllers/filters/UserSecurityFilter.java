@@ -1,6 +1,7 @@
 package controllers.filters;
 
 import dto.UserRole;
+import dto.UserSessionDTO;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -22,7 +23,8 @@ public class UserSecurityFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        UserRole role = (UserRole) session.getAttribute(USER_PARAM_NAME);
+        UserSessionDTO userSessionDTO = (UserSessionDTO) session.getAttribute(USER_PARAM_NAME);
+        UserRole role = userSessionDTO.getRole();
         if (role != null && (role.equals(UserRole.USER) || role.equals(UserRole.ADMIN))) {
             chain.doFilter(request, response);
         } else {
