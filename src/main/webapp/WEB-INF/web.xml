@@ -25,6 +25,14 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>AdminStatistic</servlet-name>
+        <jsp-file>/views/adminstatistic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminStatistic</servlet-name>
+        <url-pattern>/adminstatistic.jsp</url-pattern>
+    </servlet-mapping>
+    
         <servlet-name>SignUp</servlet-name>
         <jsp-file>/views/signUpForm.jsp</jsp-file>
     </servlet>
@@ -41,4 +49,5 @@
         <servlet-name>SignIn</servlet-name>
         <url-pattern>/ui/signIn</url-pattern>
     </servlet-mapping>
+
 </web-app>
