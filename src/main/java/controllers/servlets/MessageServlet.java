@@ -22,6 +22,7 @@ public class MessageServlet extends HttpServlet {
             DateTimeFormatter.ofPattern("HH:mm:ss, dd.MM.yyyy");
     private final String MESSAGE_PARAM_NAME = "text";
     private final String RECIPIENT_PARAM_NAME = "recipient";
+    private final String USER_ATTRIBUTE = "user";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -33,7 +34,7 @@ public class MessageServlet extends HttpServlet {
                 .getMessageService();
 
         HttpSession currentSession = req.getSession();
-        UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute("user");
+        UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute(USER_ATTRIBUTE);
         String login = user.getLogin();
 
         writer.append("<h1>")
@@ -59,7 +60,7 @@ public class MessageServlet extends HttpServlet {
         IMessageService service = ServiceProvider.getInstance()
                 .getMessageService();
 
-        UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute("user");
+        UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute(USER_ATTRIBUTE);
         String text = getRequestParam(req, MESSAGE_PARAM_NAME);
         String sender = user.getLogin();
         String recipient = getRequestParam(req, RECIPIENT_PARAM_NAME);
