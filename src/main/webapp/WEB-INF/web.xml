@@ -12,7 +12,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>MessageForm</servlet-name>
-        <url-pattern>/ui/user/message</url-pattern>
+        <url-pattern>/messageform.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -21,7 +21,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ReceivedMessages</servlet-name>
-        <url-pattern>/ui/user/chats</url-pattern>
+        <url-pattern>/chats.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet>
