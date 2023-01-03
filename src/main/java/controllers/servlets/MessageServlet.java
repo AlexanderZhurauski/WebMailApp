@@ -33,8 +33,8 @@ public class MessageServlet extends HttpServlet {
                 .getMessageService();
 
         HttpSession currentSession = req.getSession();
-        UserSessionDTO user = getUserData(currentSession);
-        String login = getUserLogin(user);
+        UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute("user");
+        String login = user.getLogin();
 
         writer.append("<h1>")
                 .append(user.getLogin())
@@ -59,31 +59,13 @@ public class MessageServlet extends HttpServlet {
         IMessageService service = ServiceProvider.getInstance()
                 .getMessageService();
 
-        UserSessionDTO user = getUserData(currentSession);
+        UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute("user");
         String text = getRequestParam(req, MESSAGE_PARAM_NAME);
-        String sender = getUserLogin(user);
+        String sender = user.getLogin();
         String recipient = getRequestParam(req, RECIPIENT_PARAM_NAME);
         service.send(new MessageDTO(text, sender, recipient));
 
         writer.append("<h2>Message to " + recipient + " sent successfully!</h2>");
-    }
-
-    private UserSessionDTO getUserData(HttpSession session) {
-        UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
-        if (user == null) {
-            throw new IllegalStateException("No user is logged in");
-        }
-
-        return user;
-    }
-    private String getUserLogin(UserSessionDTO user) {
-        String login = user.getLogin();
-        if (login == null || login.isBlank()) {
-            throw new IllegalStateException("User login data in the" +
-                    " session is corrupted");
-        }
-
-        return login;
     }
 
     private String getRequestParam(HttpServletRequest req, String name) {

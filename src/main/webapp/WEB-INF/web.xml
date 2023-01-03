@@ -32,7 +32,8 @@
         <servlet-name>AdminStatistic</servlet-name>
         <url-pattern>/adminstatistic.jsp</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet>
         <servlet-name>SignUp</servlet-name>
         <jsp-file>/views/signUpForm.jsp</jsp-file>
     </servlet>

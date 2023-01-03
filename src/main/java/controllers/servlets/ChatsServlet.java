@@ -21,27 +21,17 @@ public class ChatsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        req.setAttribute("login", getLogin(req.getSession()));
+        HttpSession session = req.getSession();
+        UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
+        String login = user.getLogin();
+        req.setAttribute("login", login);
+
         IMessageService service = ServiceProvider.getInstance()
                 .getMessageService();
-        HttpSession session = req.getSession();
-        List<MessageRecipientDTO> messageList = service.get(getLogin(session));
+        List<MessageRecipientDTO> messageList = service.get(login);
         session.setAttribute("messageList", messageList);
 
         getServletContext().getRequestDispatcher("chats.jsp")
                 .forward(req, resp);
-    }
-
-    private String getLogin(HttpSession session) {
-        UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
-        if (user == null) {
-            throw new IllegalStateException("No user is logged in");
-        }
-        String login = user.getLogin();
-        if (login == null || login.isBlank()) {
-            throw new IllegalStateException("User login data in the" +
-                    " session is corrupted");
-        }
-        return login;
     }
 }
