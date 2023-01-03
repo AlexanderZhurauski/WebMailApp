@@ -17,7 +17,7 @@
     <input type="password" name="password" value=""/> <br/>
     <input type="submit" value="Log in"/>
 </form>
-<h3>Don't have an account yet? <a href="/ui/signUp">Sign Up!</a></h3>
+<h3>Don't have an account yet? <a href="${pageContext.request.contextPath}/ui/signUp">Sign Up!</a></h3>
 <hr/>
 </body>
 </html>
