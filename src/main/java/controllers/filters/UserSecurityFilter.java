@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"ui/user/*", "/api/message"})
+@WebFilter(urlPatterns = {"/ui/user/*", "/api/message"})
 public class UserSecurityFilter implements Filter {
     private final String USER_PARAM_NAME = "user";
 
