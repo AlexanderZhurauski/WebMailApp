@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "MessageFormServlet", urlPatterns = "/ui/user/message")
+@WebServlet(name = "ChatsServlet", urlPatterns = "/ui/user/message")
 public class ChatsServlet extends HttpServlet {
 
     @Override
