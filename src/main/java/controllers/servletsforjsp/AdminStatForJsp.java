@@ -1,4 +1,4 @@
-package controllers.servletForJsp;
+package controllers.servletsforjsp;
 
 import services.ServiceProvider;
 import services.api.IAdminStatisticService;
