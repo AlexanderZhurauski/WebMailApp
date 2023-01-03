@@ -31,7 +31,7 @@ public class MessageService implements IMessageService {
                     " message to yourself!");
         }
         if(!this.userDAO.exist(recipient)) {
-            throw new IllegalArgumentException("The the specified recipient" +
+            throw new IllegalArgumentException("The specified recipient" +
                     " doesn't exist!");
         }
         String text = message.getText();

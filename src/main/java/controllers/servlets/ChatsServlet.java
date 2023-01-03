@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ChatsServlet", urlPatterns = "/ui/user/message")
+@WebServlet(name = "ChatsServlet", urlPatterns = "/ui/user/chats")
 public class ChatsServlet extends HttpServlet {
 
     private final String LOGIN_PARAM_NAME = "login";
@@ -34,7 +34,7 @@ public class ChatsServlet extends HttpServlet {
         List<MessageRecipientDTO> messageList = service.get(login);
         session.setAttribute(MESSAGE_LIST, messageList);
 
-        getServletContext().getRequestDispatcher("chats.jsp")
+        getServletContext().getRequestDispatcher("/chats")
                 .forward(req, resp);
     }
 }

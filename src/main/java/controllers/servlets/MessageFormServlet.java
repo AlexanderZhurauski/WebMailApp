@@ -23,7 +23,7 @@ public class MessageFormServlet extends HttpServlet {
         String login = user.getLogin();
         req.setAttribute(LOGIN_PARAM_NAME, login);
 
-        getServletContext().getRequestDispatcher("messageform.jsp")
+        getServletContext().getRequestDispatcher("/messageform")
                 .forward(req, resp);
     }
 }

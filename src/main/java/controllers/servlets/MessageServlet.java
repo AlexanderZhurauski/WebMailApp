@@ -66,7 +66,7 @@ public class MessageServlet extends HttpServlet {
         String recipient = getRequestParam(req, RECIPIENT_PARAM_NAME);
         service.send(new MessageDTO(text, sender, recipient));
 
-        writer.append("<h2>Message to " + recipient + " sent successfully!</h2>");
+        writer.append("Message to " + recipient + " sent successfully!");
     }
 
     private String getRequestParam(HttpServletRequest req, String name) {
