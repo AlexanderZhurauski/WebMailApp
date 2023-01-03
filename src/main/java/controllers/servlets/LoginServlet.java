@@ -1,7 +1,6 @@
 package controllers.servlets;
 
 import dto.UserLoginDTO;
-import dto.UserSessionDTO;
 import services.ServiceProvider;
 import services.api.ILoginService;
 
@@ -25,7 +24,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
