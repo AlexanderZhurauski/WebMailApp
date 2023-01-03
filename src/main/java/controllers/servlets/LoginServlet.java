@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.setAttribute("user", loginService.getUserSessionDTO(login));
+        session.setMaxInactiveInterval(-1);
         writer.append("<h2>login completed successfully</h2>");
     }
 
