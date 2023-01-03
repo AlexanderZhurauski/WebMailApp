@@ -25,8 +25,8 @@ public class AdminSecurityFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         String contextPath = req.getContextPath();
         HttpSession session = req.getSession();
-        if ((session != null) && (session.getAttribute("user") != null) &&
-                ((UserSessionDTO) session.getAttribute("user")).getRole() == UserRole.ADMIN) {
+        UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
+        if ((session != null) && (user != null) && (user.getRole() == UserRole.ADMIN)) {
             chain.doFilter(request, response);
         } else {
             resp.sendRedirect(contextPath+"/ui/singIn");
