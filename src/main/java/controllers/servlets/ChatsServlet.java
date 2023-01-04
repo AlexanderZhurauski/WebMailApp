@@ -2,8 +2,9 @@ package controllers.servlets;
 
 import dto.MessageRecipientDTO;
 import dto.UserSessionDTO;
-import services.ServiceProvider;
 import services.api.IMessageService;
+import services.util.ServiceProviderFactory;
+import services.util.ServiceType;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +30,7 @@ public class ChatsServlet extends HttpServlet {
         String login = user.getLogin();
         req.setAttribute(LOGIN_PARAM_NAME, login);
 
-        IMessageService service = ServiceProvider.getInstance()
+        IMessageService service = ServiceProviderFactory.getInstance(ServiceType.TYPE1)
                 .getMessageService();
         List<MessageRecipientDTO> messageList = service.get(login);
         session.setAttribute(MESSAGE_LIST, messageList);

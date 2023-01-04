@@ -2,8 +2,9 @@ package controllers.servlets;
 
 import dto.MessageDTO;
 import dto.UserSessionDTO;
-import services.ServiceProvider;
 import services.api.IMessageService;
+import services.util.ServiceProviderFactory;
+import services.util.ServiceType;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +31,7 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        IMessageService service = ServiceProvider.getInstance()
+        IMessageService service = ServiceProviderFactory.getInstance(ServiceType.TYPE1)
                 .getMessageService();
 
         HttpSession currentSession = req.getSession();
@@ -57,7 +58,7 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         PrintWriter writer = resp.getWriter();
         HttpSession currentSession = req.getSession();
-        IMessageService service = ServiceProvider.getInstance()
+        IMessageService service = ServiceProviderFactory.getInstance(ServiceType.TYPE1)
                 .getMessageService();
 
         UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute(USER_ATTRIBUTE);

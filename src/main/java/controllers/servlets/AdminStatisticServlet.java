@@ -1,7 +1,8 @@
 package controllers.servlets;
 
-import services.ServiceProvider;
 import services.api.IAdminStatisticService;
+import services.util.ServiceProviderFactory;
+import services.util.ServiceType;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +17,8 @@ public class AdminStatisticServlet extends HttpServlet {
     private final IAdminStatisticService adminStatisticService;
 
     public AdminStatisticServlet() {
-        this.adminStatisticService = ServiceProvider.getInstance().getAdminStatisticService();
+        this.adminStatisticService = ServiceProviderFactory.getInstance(ServiceType.TYPE1)
+                .getAdminStatisticService();
     }
 
     @Override
@@ -31,12 +33,12 @@ public class AdminStatisticServlet extends HttpServlet {
         writer.write("<h3>The number of messages sent in the application: "
                 + messageStat + "</h3>");
         writer.write("<h3> Online users </h3>");
-        printStat(onlineUsers,writer);
+        printStat(onlineUsers, writer);
         writer.write("<h3> Registered users in the application </h3>");
-        printStat(usersStat,writer);
+        printStat(usersStat, writer);
     }
 
-    private void printStat(String stat,PrintWriter writer){
+    private void printStat(String stat, PrintWriter writer) {
         for (var s : stat.split("\n")) {
             writer.write("<h4>  " + s + "</h4>");
         }

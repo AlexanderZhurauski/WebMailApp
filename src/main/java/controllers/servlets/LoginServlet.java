@@ -1,8 +1,9 @@
 package controllers.servlets;
 
 import dto.UserLoginDTO;
-import services.ServiceProvider;
 import services.api.ILoginService;
+import services.util.ServiceProviderFactory;
+import services.util.ServiceType;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ public class LoginServlet extends HttpServlet {
     private final String USER_PARAM_NAME = "user";
 
     public LoginServlet() {
-        this.loginService = ServiceProvider.getInstance().getLoginService();
+        this.loginService = ServiceProviderFactory.getInstance(ServiceType.TYPE1).getLoginService();
     }
 
     @Override
