@@ -1,6 +1,5 @@
 package services;
 
-import dao.DAOProvider;
 import dao.api.IMessageDAO;
 import dao.api.IOnlineUserDAO;
 import dao.api.IUserDAO;
@@ -15,7 +14,7 @@ public class AdminStatisticService implements IAdminStatisticService {
                                  IOnlineUserDAO onlineUserDAO) {
         this.userDAO = userDAO;
         this.messageDAO = messageDAO;
-        this.onlineUserDAO=onlineUserDAO;
+        this.onlineUserDAO = onlineUserDAO;
     }
 
     @Override
@@ -26,7 +25,7 @@ public class AdminStatisticService implements IAdminStatisticService {
     @Override
     public String getOnlineUsers() {
         StringBuilder sb = new StringBuilder();
-        DAOProvider.getInstance().getUserOnlineDAO().getAll().
+        onlineUserDAO.getAll().
                 forEach(user -> sb.append(user.getLogin()).append("\n"));
         return sb.toString();
     }
