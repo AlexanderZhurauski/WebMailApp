@@ -1,6 +1,5 @@
 package controllers.filters;
 
-import dto.UserRole;
 import dto.UserSessionDTO;
 
 import javax.servlet.*;
@@ -19,13 +18,13 @@ public class UserSecurityFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         UserSessionDTO userSessionDTO = (UserSessionDTO) session.getAttribute(USER_PARAM_NAME);
-        UserRole role = userSessionDTO.getRole();
-        if (role != null && (role.equals(UserRole.USER) || role.equals(UserRole.ADMIN))) {
+        if (session != null && userSessionDTO!=null){
             chain.doFilter(request, response);
         } else {
             resp.sendRedirect(req.getContextPath() + "/ui/signIn");

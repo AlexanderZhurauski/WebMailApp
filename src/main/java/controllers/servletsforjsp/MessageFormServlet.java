@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.servletsforjsp;
 
 import dto.UserSessionDTO;
 
@@ -22,7 +22,7 @@ public class MessageFormServlet extends HttpServlet {
                 .getAttribute(USER_ATTRIBUTE);
         String login = user.getLogin();
         req.setAttribute(LOGIN_PARAM_NAME, login);
-
+        req.setAttribute("ContextPath",req.getContextPath());
         getServletContext().getRequestDispatcher("/messageform")
                 .forward(req, resp);
     }

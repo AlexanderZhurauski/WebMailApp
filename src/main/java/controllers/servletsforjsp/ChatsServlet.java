@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.servletsforjsp;
 
 import dto.MessageRecipientDTO;
 import dto.UserSessionDTO;
@@ -34,6 +34,7 @@ public class ChatsServlet extends HttpServlet {
                 .getMessageService();
         List<MessageRecipientDTO> messageList = service.get(login);
         session.setAttribute(MESSAGE_LIST, messageList);
+        req.setAttribute("ContextPath",req.getContextPath());
 
         getServletContext().getRequestDispatcher("/chats")
                 .forward(req, resp);
