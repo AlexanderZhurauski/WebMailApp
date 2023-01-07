@@ -22,7 +22,7 @@ public class UserSecurityFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         UserSessionDTO userSessionDTO = (UserSessionDTO) session.getAttribute(USER_PARAM_NAME);
         if (session != null && userSessionDTO!=null){
             chain.doFilter(request, response);

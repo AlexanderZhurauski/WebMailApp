@@ -25,7 +25,7 @@ public class AdminSecurityFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String contextPath = req.getContextPath();
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         UserSessionDTO user = (UserSessionDTO) session.getAttribute(USER_PARAM_NAME);
         if ((session != null) && (user != null) && (user.getRole() == UserRole.ADMIN)) {
             chain.doFilter(request, response);
