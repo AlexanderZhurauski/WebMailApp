@@ -25,7 +25,7 @@ public class AdminStatForJsp extends HttpServlet {
         req.setAttribute("messageStat", service.getMessageStatistic());
         req.setAttribute("onlineStat", service.getOnlineUsers());
         req.setAttribute("usersStat", service.getUserStatistic());
-
+        req.setAttribute("ContextPath",req.getContextPath());
         getServletContext().getRequestDispatcher("/adminstatistic.jsp")
                 .forward(req, resp);
     }
