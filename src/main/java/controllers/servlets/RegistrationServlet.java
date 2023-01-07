@@ -38,11 +38,13 @@ public class RegistrationServlet extends HttpServlet {
             throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
-
         UserRegistrationDTO user = createUser(req);
         provider.getRegistrationService().signUp(user);
-        writer.append("<h2>registration completed successfully</h2>");
+        req.setAttribute(LOGIN_PARAM_NAME,
+                getData(req.getParameterValues(LOGIN_PARAM_NAME),LOGIN_PARAM_NAME));
+        req.setAttribute(PASSWORD_PARAM_NAME,
+                getData(req.getParameterValues(PASSWORD_PARAM_NAME),PASSWORD_PARAM_NAME));
+        getServletContext().getRequestDispatcher("/api/login").forward(req,resp);
     }
 
     private UserRegistrationDTO createUser(HttpServletRequest req) {

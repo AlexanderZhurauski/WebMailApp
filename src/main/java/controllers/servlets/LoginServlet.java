@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute(USER_PARAM_NAME, loginService.getUserSessionDTO(login));
         session.setMaxInactiveInterval(-1);
-        writer.append("<h2>login completed successfully</h2>");
+        resp.sendRedirect(req.getContextPath()+"/ui");
     }
 
     private String getRequestParam(HttpServletRequest req, String name) {

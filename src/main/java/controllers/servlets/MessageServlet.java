@@ -56,7 +56,6 @@ public class MessageServlet extends HttpServlet {
             throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
-        PrintWriter writer = resp.getWriter();
         HttpSession currentSession = req.getSession();
         IMessageService service = ServiceProviderFactory.getInstance(ServiceType.STANDARD)
                 .getMessageService();
@@ -66,8 +65,7 @@ public class MessageServlet extends HttpServlet {
         String sender = user.getLogin();
         String recipient = getRequestParam(req, RECIPIENT_PARAM_NAME);
         service.send(new MessageDTO(text, sender, recipient));
-
-        writer.append("Message to " + recipient + " sent successfully!");
+        resp.sendRedirect(req.getContextPath()+"/ui");
     }
 
     private String getRequestParam(HttpServletRequest req, String name) {
