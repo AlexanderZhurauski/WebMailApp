@@ -1,11 +1,13 @@
 package services.api;
 
+import java.util.List;
+
 public interface IAdminStatisticService {
 
     int getMessageStatistic();
 
-    String getOnlineUsers();
+    List<String> getOnlineUsers();
 
-    String getUserStatistic();
+    List<String> getUserStatistic();
 
 }
