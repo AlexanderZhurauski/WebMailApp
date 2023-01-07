@@ -28,12 +28,11 @@ public class UserSecurityFilter implements Filter {
         if (role != null && (role.equals(UserRole.USER) || role.equals(UserRole.ADMIN))) {
             chain.doFilter(request, response);
         } else {
-            resp.sendRedirect(req.getContextPath() + "/signIn");
+            resp.sendRedirect(req.getContextPath() + "/ui/signIn");
         }
     }
 
     @Override
     public void destroy() {
-
     }
 }

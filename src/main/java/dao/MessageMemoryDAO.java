@@ -14,6 +14,7 @@ public class MessageMemoryDAO implements IMessageDAO {
         this.userMessages = new HashMap<>();
     }
 
+    @Override
     public List<MessageEntity> getAll() {
         List<MessageEntity> allMessages = this.userMessages
                 .values()
@@ -24,10 +25,12 @@ public class MessageMemoryDAO implements IMessageDAO {
         return allMessages;
     }
 
+    @Override
     public List<MessageEntity> get(String recipient) {
         return this.userMessages.get(recipient);
     }
 
+    @Override
     public void add(MessageEntity message) {
         List<MessageEntity> userInbox = this.userMessages.get(message.
                 getRecipient());

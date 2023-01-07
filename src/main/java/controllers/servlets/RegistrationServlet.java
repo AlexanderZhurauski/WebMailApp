@@ -1,7 +1,9 @@
 package controllers.servlets;
 
 import dto.UserRegistrationDTO;
-import services.ServiceProvider;
+import services.api.util.IServiceProvider;
+import services.util.ServiceProviderFactory;
+import services.util.ServiceType;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +19,7 @@ import java.time.format.DateTimeParseException;
 @WebServlet(name = "RegistrationServlet", urlPatterns = "/api/user")
 public class RegistrationServlet extends HttpServlet {
 
-    private final ServiceProvider provider;
+    private final IServiceProvider provider;
     private final String LOGIN_PARAM_NAME = "login";
     private final String PASSWORD_PARAM_NAME = "password";
     private final String FIRSTNAME_PARAM_NAME = "firstName";
@@ -28,7 +30,7 @@ public class RegistrationServlet extends HttpServlet {
             DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public RegistrationServlet() {
-        this.provider = ServiceProvider.getInstance();
+        this.provider = ServiceProviderFactory.getInstance(ServiceType.STANDARD);
     }
 
     @Override

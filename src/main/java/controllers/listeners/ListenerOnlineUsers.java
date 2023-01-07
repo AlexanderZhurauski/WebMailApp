@@ -1,16 +1,18 @@
 package controllers.listeners;
 
-import dao.DAOProvider;
-import dao.api.IOnlineUserDAO;
 import dto.UserSessionDTO;
+import services.api.IOnlineUsersService;
+import services.util.ServiceProviderFactory;
+import services.util.ServiceType;
 
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
 @WebListener
-public class ListenerOnlineUsers implements HttpSessionAttributeListener{
-    private final IOnlineUserDAO users = DAOProvider.getInstance().getUserOnlineDAO();
+public class ListenerOnlineUsers implements HttpSessionAttributeListener {
+    private final IOnlineUsersService users = ServiceProviderFactory
+            .getInstance(ServiceType.STANDARD).getOnlineUserService();
 
     @Override
     public void attributeAdded(HttpSessionBindingEvent se) {

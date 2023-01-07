@@ -1,6 +1,6 @@
 package services;
 
-import dao.DAOProvider;
+import dao.api.util.IDAOProvider;
 import dto.UserRegistrationDTO;
 import dto.UserRole;
 import entities.UserEntity;
@@ -12,10 +12,10 @@ import java.time.Period;
 
 public class RegistrationService implements IRegistrationService {
 
-    private final DAOProvider daoProvider;
+    private final IDAOProvider daoProvider;
     private final IHashGenerator hashGenerator;
 
-    public RegistrationService(DAOProvider daoProvider, IHashGenerator hashGenerator) {
+    public RegistrationService(IDAOProvider daoProvider, IHashGenerator hashGenerator) {
         this.daoProvider = daoProvider;
         this.hashGenerator = hashGenerator;
     }
