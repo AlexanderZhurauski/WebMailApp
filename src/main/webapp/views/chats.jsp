@@ -24,6 +24,9 @@
         ${message.time}, ${message.sender}: <br>
         ${message.text} <br> <hr>
     </c:forEach>
+     <form action="${ContextPath}/ui">
+        <button>Main page</button>
+     </form>
 </body>
 </html>
 

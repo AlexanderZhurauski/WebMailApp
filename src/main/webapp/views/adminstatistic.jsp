@@ -11,8 +11,15 @@
         <h3>The number of messages sent in the application: </h3>
         ${messageStat}
         <h3>Online users: </h3>
-        ${onlineStat}
+        <c:forEach var = "user" items = "${onlineStat}" >
+                ${user} <br>
+            </c:forEach>
         <h3>Registered users in the application: </h3>
-        ${usersStat}
+        <c:forEach items="${usersStat}" var="item">
+            ${item} <br>
+        </c:forEach>
+        <form action="${ContextPath}/ui">
+           <button>Main page</button>
+        </form>
     </body>
 </html>

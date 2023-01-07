@@ -24,6 +24,9 @@
     <br>
     <input type="submit" value="Send">
 </form>
+<form action="${ContextPath}/ui">
+    <button>Main page</button>
+</form>
 </body>
 </html>
 
