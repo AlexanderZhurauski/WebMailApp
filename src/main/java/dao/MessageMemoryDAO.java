@@ -40,4 +40,9 @@ public class MessageMemoryDAO implements IMessageDAO {
         }
         userInbox.add(message);
     }
+
+    @Override
+    public int getCount() {
+        return userMessages.size();
+    }
 }
