@@ -16,7 +16,7 @@ public class AdminStatForJsp extends HttpServlet {
     private final IAdminStatisticService service;
 
     public AdminStatForJsp() {
-        service = ServiceProviderFactory.getInstance(ServiceType.TYPE1).getAdminStatisticService();
+        service = ServiceProviderFactory.getInstance(ServiceType.STANDARD).getAdminStatisticService();
     }
 
     @Override

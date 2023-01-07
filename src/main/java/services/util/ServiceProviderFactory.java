@@ -9,7 +9,7 @@ public class ServiceProviderFactory {
 
     public static IServiceProvider getInstance(ServiceType type) {
         switch (type) {
-            case TYPE1:
+            case STANDARD:
                 return ServiceProvider.getInstance();
             default:
                 throw new IllegalArgumentException("You should provide one of the service type.");

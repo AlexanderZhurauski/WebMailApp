@@ -30,7 +30,7 @@ public class ChatsServlet extends HttpServlet {
         String login = user.getLogin();
         req.setAttribute(LOGIN_PARAM_NAME, login);
 
-        IMessageService service = ServiceProviderFactory.getInstance(ServiceType.TYPE1)
+        IMessageService service = ServiceProviderFactory.getInstance(ServiceType.STANDARD)
                 .getMessageService();
         List<MessageRecipientDTO> messageList = service.get(login);
         session.setAttribute(MESSAGE_LIST, messageList);

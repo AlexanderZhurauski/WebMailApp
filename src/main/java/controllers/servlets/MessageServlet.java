@@ -31,7 +31,7 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        IMessageService service = ServiceProviderFactory.getInstance(ServiceType.TYPE1)
+        IMessageService service = ServiceProviderFactory.getInstance(ServiceType.STANDARD)
                 .getMessageService();
 
         HttpSession currentSession = req.getSession();
@@ -58,7 +58,7 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         PrintWriter writer = resp.getWriter();
         HttpSession currentSession = req.getSession();
-        IMessageService service = ServiceProviderFactory.getInstance(ServiceType.TYPE1)
+        IMessageService service = ServiceProviderFactory.getInstance(ServiceType.STANDARD)
                 .getMessageService();
 
         UserSessionDTO user = (UserSessionDTO) currentSession.getAttribute(USER_ATTRIBUTE);

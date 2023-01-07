@@ -30,7 +30,7 @@ public class RegistrationServlet extends HttpServlet {
             DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public RegistrationServlet() {
-        this.provider = ServiceProviderFactory.getInstance(ServiceType.TYPE1);
+        this.provider = ServiceProviderFactory.getInstance(ServiceType.STANDARD);
     }
 
     @Override

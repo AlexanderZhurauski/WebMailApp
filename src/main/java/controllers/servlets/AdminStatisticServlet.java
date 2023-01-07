@@ -17,7 +17,7 @@ public class AdminStatisticServlet extends HttpServlet {
     private final IAdminStatisticService adminStatisticService;
 
     public AdminStatisticServlet() {
-        this.adminStatisticService = ServiceProviderFactory.getInstance(ServiceType.TYPE1)
+        this.adminStatisticService = ServiceProviderFactory.getInstance(ServiceType.STANDARD)
                 .getAdminStatisticService();
     }
 

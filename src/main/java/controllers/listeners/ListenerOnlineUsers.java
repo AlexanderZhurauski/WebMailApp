@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSessionBindingEvent;
 @WebListener
 public class ListenerOnlineUsers implements HttpSessionAttributeListener {
     private final IOnlineUsersService users = ServiceProviderFactory
-            .getInstance(ServiceType.TYPE1).getOnlineUserService();
+            .getInstance(ServiceType.STANDARD).getOnlineUserService();
 
     @Override
     public void attributeAdded(HttpSessionBindingEvent se) {

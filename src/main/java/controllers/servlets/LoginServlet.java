@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
     private final String USER_PARAM_NAME = "user";
 
     public LoginServlet() {
-        this.loginService = ServiceProviderFactory.getInstance(ServiceType.TYPE1).getLoginService();
+        this.loginService = ServiceProviderFactory.getInstance(ServiceType.STANDARD).getLoginService();
     }
 
     @Override
