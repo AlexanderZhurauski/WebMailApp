@@ -57,6 +57,6 @@ public class LoginServlet extends HttpServlet {
                     " provided");
         }
 
-        return param[0];
+        return param[0].trim();
     }
 }

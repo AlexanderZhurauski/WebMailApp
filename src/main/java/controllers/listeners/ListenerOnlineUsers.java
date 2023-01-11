@@ -32,6 +32,11 @@ public class ListenerOnlineUsers implements HttpSessionAttributeListener {
 
     @Override
     public void attributeReplaced(HttpSessionBindingEvent event) {
+        UserSessionDTO userSessionDTO = (UserSessionDTO) event.getValue();
+        if(userSessionDTO!=null){
+            users.remove(userSessionDTO);
+        }
+        attributeAdded(event);
     }
 
 }
